@@ -1,27 +1,18 @@
+const BaseError = require('./base_error');
+
+
+const defBody = {
+    name: 'BusinessError',
+    code: 500
+};
+
 /**
  * 业务异常
  */
-class BusinessError extends Error{
-    constructor(message,code){
-        super(message);
-        this._code=code;
-        this._message = message;
-    }
+class BusinessError extends BaseError {
 
-    get message() {
-        return this._message;
-    }
-
-    set message(value) {
-        this._message = value;
-    }
-
-    get code() {
-        return this._code;
-    }
-
-    set code(value) {
-        this._code = value;
+    constructor(message, errorBody) {
+        super(message, Object.assign(defBody, errorBody));
     }
 }
 

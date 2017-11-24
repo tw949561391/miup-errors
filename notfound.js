@@ -1,34 +1,21 @@
-class Notfound extends Error {
-    constructor(message, code) {
-        super(message);
-        this._message = message;
-        this._code = code;
-        this._status = 404;
-    }
+const BaseError = require('./base_error');
 
-    get message() {
-        return this._message;
-    }
+const defBody = {
+    name: 'NotFound',
+    code: 404,
+    status: 404
+};
 
-    set message(value) {
-        this._message = value;
-    }
-
-    get code() {
-        return this._code;
-    }
-
-    set code(value) {
-        this._code = value;
-    }
+/**
+ * 业务异常
+ */
+class NotFound extends BaseError {
 
 
-    get status() {
-        return this._status;
-    }
-
-    set status(value) {
-        this._status = value;
+    constructor(message, errorBody) {
+        super(message, Object.assign(defBody, errorBody));
     }
 }
-module.exports = Notfound;
+
+
+module.exports = NotFound;

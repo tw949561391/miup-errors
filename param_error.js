@@ -1,27 +1,19 @@
+const BaseError=require('./base_error');
 
-class ParamError extends Error{
-    constructor(message, code){
-        super(message);
-        this._code=code;
-        this._message = message;
-    }
-    get message() {
-        return this._message;
-    }
+const defBody = {
+    name: 'ParamError',
+    code: 500,
+};
 
-    set message(value) {
-        this._message = value;
-    }
+/**
+ * 业务异常
+ */
+class ParamError extends BaseError{
 
-    get code() {
-        return this._code;
-    }
-
-    set code(value) {
-        this._code = value;
+    constructor(message, errorBody) {
+        super(message, Object.assign(defBody, errorBody));
     }
 }
-
 
 
 module.exports = ParamError;
